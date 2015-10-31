@@ -1,0 +1,22 @@
+---
+# tasks file for roles/transmission
+
+
+  - name: apt-get stuff
+    apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
+    with_items:
+      - transmission-daemon
+
+  - name: stop the service
+    service: name=transmission-daemon state=stopped
+
+  - name: get localhost wlan0 ip
+    shell: ifconfig wlan0 | grep "inet addr" | tr -s ' ' | cut -d ':' -f2 | cut -d ' ' -f1
+    delegate_to: localhost
+    register: localhost_ip
+
+  - name: deploy config
+    template: src=etc/transmission-daemon/settings.json dest=/etc/transmission-daemon/settings.json
+
+  - name: start the service
+    service: name=transmission-daemon state=started
