@@ -19,4 +19,4 @@
     template: src=etc/transmission-daemon/settings.json dest=/etc/transmission-daemon/settings.json owner=root group=root mode=0755
 
   - name: start the service
-    service: name=transmission-daemon state=restart
+    service: name=transmission-daemon state=reloaded
