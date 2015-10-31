@@ -16,7 +16,7 @@
     register: localhost_ip
 
   - name: deploy config
-    template: src=etc/transmission-daemon/settings.json dest=/etc/transmission-daemon/settings.json
+    template: src=etc/transmission-daemon/settings.json dest=/etc/transmission-daemon/settings.json owner=root group=root mode=0755
 
   - name: start the service
-    service: name=transmission-daemon state=started
+    service: name=transmission-daemon state=restart
