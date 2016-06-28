@@ -1,0 +1,8 @@
+*.sw[op]
+*.pyc
+.vagrant*
+*.zip
+nzbDrone/
+roles/*
+*.retry
+

@@ -1,0 +1,15 @@
+---
+  - hosts: all
+    roles:
+      - role: transmission
+        tags:
+          - trans
+      - role: serialdoom.private-internet-access
+      - role: serialdoom.sonarr
+
+
+    tasks:
+      - name: install firefox
+        apt:
+          name: firefox
+          state: present
